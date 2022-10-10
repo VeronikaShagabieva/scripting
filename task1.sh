@@ -3,6 +3,8 @@
 guessed_right=0
 guessed_wrong=0
 
+
+
 while [[ true ]]; do
 	rnd=$(shuf -i 0-9 -n 1)
 		
@@ -20,10 +22,22 @@ while [[ true ]]; do
 		echo "Guessed wrong!"
 	fi
 
+RED='\e[31m'
+GREEN='\e[32m'
+RESET='\e[0m'
+
+if (( rnd != input ))
+	then
+	    number_string="${RED}${rnd}${RESET}" # неверные выделяем красным
+	else
+            number_string="${GREEN}${rnd}${RESET}" # верные выделяем зеленым
+fi
+
 	rnd_hist+=( $rnd )
 
 	guessed_right_percent=$((guessed_right*100/(guessed_right+guessed_wrong)))
 
 	echo "Statistics (guessed/not guessed): ${guessed_right_percent}% / $((100-guessed_right_percent))%"
 	echo "Hidden numbers: ${rnd_hist[@]}"
+	
 done
