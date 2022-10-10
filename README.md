@@ -1,1 +1,1 @@
-# scripting
+Shagabieva Veronika, 11-122
